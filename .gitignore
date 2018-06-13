@@ -1,0 +1,5 @@
+node_modules
+.c9
+package-lock.json
+data.json
+docker-compose.yml

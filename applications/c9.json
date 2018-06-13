@@ -1,0 +1,21 @@
+{
+    "name": "Cloud9 Container",
+    "description": "Run an always online cloud9 container from your server",
+    "vars": ["path", "hostname"],
+    "docker-compose": {
+        "image": "kyma/docker-nginx",
+        "volumes": ["$path:/workspace"],
+        "labels": [
+          "traefik.$hostname-c9.frontend.rule=Host:$hostname",
+          "traefik.$hostname-c9.port=8181",
+          "traefik.8080-$hostname-c9.frontend.rule=Host:8080.$hostname",
+          "traefik.8080-$hostname-c9.port=8080",
+          "traefik.8081-$hostname-c9.frontend.rule=Host:8081.$hostname",
+          "traefik.8081-$hostname-c9.port=8081",
+          "traefik.enable=true",
+          "auth=admin:admin"
+        ],
+        "restart": "always"
+
+    }
+}

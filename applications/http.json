@@ -1,0 +1,12 @@
+{
+    "name": "HTTP Web Server NGINX",
+    "description": "A full HTTP web server. It will read from any directory and can serve php files, but cannot handle .htaccess due to it running NGINX",
+    "vars": ["path", "hostname"],
+    "docker-compose": {
+        "image": "kyma/docker-nginx",
+        "volumes": ["$path:/var/www"],
+        "labels": ["traefik.backend=Portainer", "traefik.frontend.rule=Host:$hostname", "traefik.docker.network=proxy", "traefik.port=80"],
+        "restart": "always"
+
+    }
+}
