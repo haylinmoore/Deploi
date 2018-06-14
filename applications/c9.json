@@ -3,7 +3,7 @@
     "description": "Run an always online cloud9 container from your server",
     "vars": ["path", "hostname"],
     "docker-compose": {
-        "image": "kyma/docker-nginx",
+        "image": "sapk/cloud9",
         "volumes": ["$path:/workspace"],
         "labels": [
           "traefik.$hostname-c9.frontend.rule=Host:$hostname",
@@ -12,10 +12,9 @@
           "traefik.8080-$hostname-c9.port=8080",
           "traefik.8081-$hostname-c9.frontend.rule=Host:8081.$hostname",
           "traefik.8081-$hostname-c9.port=8081",
-          "traefik.enable=true",
-          "auth=admin:admin"
+          "traefik.enable=true"
         ],
-        "restart": "always"
-
+        "restart": "always",
+        "command": "$username:$password"
     }
 }

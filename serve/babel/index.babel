@@ -1,0 +1,127 @@
+class Card extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+
+    this.handleChange = this.handleChange.bind(this);
+    
+    this.create = this.create.bind(this);
+    
+    this.state.id =  this.props.id;
+    
+    var vars = JSON.parse(this.props.vars)
+    
+    for (var i in vars) {
+      this.state[vars[i]] = "";
+    }
+  }
+
+  handleChange(text, e) {
+    var change = this.state;
+    change[text] = e.target.value;
+    this.setState(change);
+  }
+
+  create() {   
+    $.post( "https://8080.deploi.c9.zorgtech.org/api/create", {data:JSON.stringify(this.state)})
+  .done(function( data ) {
+    alert( "Data Loaded: " + data );
+  });
+    
+  }
+
+  input(name) {
+    return (
+      <div className="input-field col s12">
+        <input
+          id={this.props.id + "_var_" + name}
+          type="text"
+          className="validate"
+          onChange={this.handleChange.bind(this, name)}
+          placeholder={name.toUpperCase()}
+        />
+      </div>
+    );
+  }
+
+  renderVars() {
+    var returned = [];
+var temp = JSON.parse(this.props.vars)
+    for (i in temp) {
+      returned.push(this.input(temp[i]));
+    }
+    return returned;
+  }
+
+  render() {
+    return (
+      <div className="card col m6 s12 l4" style={{minHeight: "300px"}}>
+        <div className="card-content">
+          <span className="card-title activator grey-text text-darken-4">
+            {this.props.title}
+            <i className="material-icons right">file_download</i>
+          </span>
+          <p>{this.props.description}</p>
+        </div>
+        <div className="card-reveal">
+          <span className="card-title grey-text text-darken-4">
+            Setup<i className="material-icons right">close</i>
+          </span>
+          <p>
+            <div className="input-field col   s12">
+        <input
+          id={this.props.id + "_name"}
+          type="text"
+          className="validate"
+          onChange={this.handleChange.bind(this, "name")}
+          placeholder="name"
+        />
+      </div>
+            {this.renderVars()}
+            <br />
+            <button
+              onClick={this.create}
+              className="waves-effect waves-light btn"
+            >
+              <i className="material-icons left">cloud</i>Deploy
+            </button>
+          </p>
+        </div>
+      </div>
+    );
+  }
+}
+
+class App extends React.Component {
+  renderCards() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open(
+      "GET",
+      "https://8080.deploi.c9.zorgtech.org/api/apps.json",
+      false
+    );
+    xhttp.send();
+    var apps = JSON.parse(xhttp.responseText);
+
+    var response = [];
+
+    for (var i in apps) {
+      response.push(
+        <Card
+          id={i}
+          title={apps[i].name}
+          description={apps[i].description}
+          vars={JSON.stringify(apps[i].vars)}
+        />
+      );
+    }
+
+    return <div>{response}</div>;
+  }
+
+  render() {
+    return <div>{this.renderCards()}</div>;
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("app"));
