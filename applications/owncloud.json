@@ -1,0 +1,12 @@
+{
+    "name": "Owncloud",
+    "description": "ownCloud is a suite of client–server software for creating file hosting services and using them. ownCloud is functionally very similar to the widely used Dropbox, with the primary functional difference",
+    "vars": ["path", "hostname"],
+    "docker-compose": {
+        "image": "owncloud",
+        "volumes": ["$path:/var/www/html"],
+        "labels": ["traefik.backend=Portainer", "traefik.frontend.rule=Host:$hostname", "traefik.docker.network=proxy", "traefik.port=80"],
+        "restart": "always"
+
+    }
+}

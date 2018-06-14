@@ -1,6 +1,6 @@
 {
     "name": "HTTP Web Server NGINX",
-    "description": "A full HTTP web server. It will read from any directory and can serve php files, but cannot handle .htaccess due to it running NGINX",
+    "description": "A full HTTP web server. It will read from any directory but cannot handle .htaccess and php",
     "vars": ["path", "hostname"],
     "docker-compose": {
         "image": "kyma/docker-nginx",

@@ -1,0 +1,13 @@
+{
+    "name": "Minecraft Server",
+    "description": "Launch a minecraft server from any directory",
+    "vars": ["path", "port"],
+    "ports": "$port:25565",
+    "docker-compose": {
+        "image": "itzg/minecraft-server",
+        "volumes": ["$path:/data"],
+        "labels": ["EULA=true"],
+        "restart": "always"
+
+    }
+}

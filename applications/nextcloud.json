@@ -1,0 +1,11 @@
+{
+    "name": "Nextcloud",
+    "description": "Nextcloud is a suite of client-server software for creating and using file hosting services. It is functionally similar to Dropbox, although Nextcloud is free and open-source, allowing anyone to install and operate it on a private server",
+    "vars": ["path", "hostname"],
+    "docker-compose": {
+        "image": "nextcloud",
+        "volumes": ["$path:/var/www/html"],
+        "labels": ["traefik.backend=Portainer", "traefik.frontend.rule=Host:$hostname", "traefik.docker.network=proxy", "traefik.port=80"],
+        "restart": "always"
+    }
+}

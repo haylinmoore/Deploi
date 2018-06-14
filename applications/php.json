@@ -1,0 +1,12 @@
+{
+    "name": "HTTP Web Server Apache/PHP",
+    "description": "A full HTTP web server. It will read from any directory and can serve php files and handle .htaccess due to it running Apache",
+    "vars": ["path", "hostname"],
+    "docker-compose": {
+        "image": "php:7.0-apache",
+        "volumes": ["$path:/var/www/html/"],
+        "labels": ["traefik.backend=Portainer", "traefik.frontend.rule=Host:$hostname", "traefik.docker.network=proxy", "traefik.port=80"],
+        "restart": "always"
+
+    }
+}

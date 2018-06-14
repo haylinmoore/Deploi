@@ -1,0 +1,11 @@
+{
+    "name": "Wordpress",
+    "description": "WordPress is a free and open-source content management system based on PHP and MySQL. To function, WordPress has to be installed on a web server, which would either be part of an Internet hosting service or a network host in its own right. REQUIRE MYSQL",
+    "vars": ["hostname", "mysql_ip", "mysql_port", "mysql_user", "mysql_password"],
+    "docker-compose": {
+        "image": "wordpress",
+        "labels": ["traefik.backend=Portainer", "traefik.frontend.rule=Host:$hostname", "traefik.docker.network=proxy", "traefik.port=80", "WORDPRESS_DB_HOST=$mysql_ip:$mysql_port", "WORDPRESS_DB_USER=$mysql_user", "WORDPRESS_DB_PASSWORD=$mysql_password"],
+        "restart": "always"
+
+    }
+}
