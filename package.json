@@ -1,11 +1,11 @@
 {
   "name": "deploi",
-  "version": "0.0.1",
+  "version": "0.1",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack"
+    "start": "node app.js",
+    "build": "./node_modules/.bin/babel ./serve/babel/index.babel --out-file ./serve/js/index.js"
   },
   "author": "Hampton Moore",
   "dependencies": {
@@ -14,5 +14,10 @@
     "js-yaml": "^3.12.0",
     "read-yaml": "^1.1.0",
     "write-yaml": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015-without-strict": "0.0.4",
+    "babel-preset-react": "^6.24.1"
   }
 }

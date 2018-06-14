@@ -10,11 +10,14 @@ var compose = null;
 var bodyParser = require('body-parser')
  
 
-fs.readdirSync("./applications").forEach(file => {
-  apps[file.replace(".json", "")] = require("./applications/"+file);
-  console.log("Loaded "+ file)
-})
+function loadApps(){
+    fs.readdirSync("./applications").forEach(file => {
+      apps[file.replace(".json", "")] = require("./applications/"+file);
+      console.log("Loaded "+ file)
+    })
+}
 
+loadApps();
 var data = {};
 
 try {
@@ -118,3 +121,5 @@ server.use('/', express.static('serve'))
 server.listen(8080, function(){
     console.log("Server Started");
 });
+
+setTimeout(loadApps, 1000*60);
