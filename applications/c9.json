@@ -1,7 +1,7 @@
 {
     "name": "Cloud9 Container",
     "description": "Run an always online cloud9 container from your server",
-    "vars": ["path", "hostname"],
+    "vars": ["path", "hostname", "username", "password"],
     "docker-compose": {
         "image": "sapk/cloud9",
         "volumes": ["$path:/workspace"],

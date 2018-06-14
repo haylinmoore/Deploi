@@ -23,7 +23,7 @@ class Card extends React.Component {
   }
 
   create() {   
-    $.post( "https://8080.deploi.c9.zorgtech.org/api/create", {data:JSON.stringify(this.state)})
+    $.post( "/api/create", {data:JSON.stringify(this.state)})
   .done(function( data ) {
     alert( "Data Loaded: " + data );
   });
@@ -97,7 +97,7 @@ class App extends React.Component {
     var xhttp = new XMLHttpRequest();
     xhttp.open(
       "GET",
-      "https://8080.deploi.c9.zorgtech.org/api/apps.json",
+      "/api/apps.json",
       false
     );
     xhttp.send();

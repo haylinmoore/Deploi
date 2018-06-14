@@ -40,7 +40,7 @@ var Card = function (_React$Component) {
   }, {
     key: "create",
     value: function create() {
-      $.post("https://8080.deploi.c9.zorgtech.org/api/create", { data: JSON.stringify(this.state) }).done(function (data) {
+      $.post("/api/create", { data: JSON.stringify(this.state) }).done(function (data) {
         alert("Data Loaded: " + data);
       });
     }
@@ -158,7 +158,7 @@ var App = function (_React$Component2) {
     key: "renderCards",
     value: function renderCards() {
       var xhttp = new XMLHttpRequest();
-      xhttp.open("GET", "https://8080.deploi.c9.zorgtech.org/api/apps.json", false);
+      xhttp.open("GET", "/api/apps.json", false);
       xhttp.send();
       var apps = JSON.parse(xhttp.responseText);
 

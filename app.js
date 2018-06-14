@@ -113,6 +113,8 @@ server.get("/api/apps.json", function(req, res){
     res.send(JSON.stringify(apps));
 });
 
+server.use('/', express.static('serve'))
+
 server.listen(8080, function(){
     console.log("Server Started");
 });
