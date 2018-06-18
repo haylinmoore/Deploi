@@ -11,7 +11,11 @@ var compose = null;
 var bodyParser = require('body-parser');
 var basicAuth = require('express-basic-auth')
  
-var password = process.env.PASSWORD || 'admin';
+var password = process.env.PASSWORD || null;
+
+if (password === null){
+    throw "A password env enviroment is REQUIRED. Example would be `PASSWORD='admin' node app.js";
+}
 
 server.use(basicAuth({
     users: { 'admin': password },
