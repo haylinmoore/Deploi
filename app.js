@@ -68,7 +68,7 @@ var launchApp = function (name, app, vars) {
         date: Math.floor(Date.now() / 1000)
     };
     compose.services[name] = functions.generateApp(apps[app]["docker-compose"], vars);
-    exec('docker-compose up -d '+name,
+    exec('docker-compose -p traefik up -d '+name,
     function (error, stdout, stderr) {
         console.log('stdout: ' + stdout);
         console.log('stderr: ' + stderr);
