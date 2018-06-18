@@ -9,7 +9,15 @@ var apps = {};
 var server = express();
 var compose = null;
 var bodyParser = require('body-parser');
+var basicAuth = require('express-basic-auth')
+ 
+var password = process.env.PASSWORD || 'admin';
 
+server.use(basicAuth({
+    users: { 'admin': password },
+    challenge: true,
+    realm: 'Imb4T3st4pp',
+}))
 
 function loadApps() {
     fs.readdirSync("./applications").forEach(function (file) {
