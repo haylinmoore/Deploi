@@ -4,7 +4,7 @@
     "vars": ["hostname", "path", "ssh_port"],
     "docker-compose": {
         "image": "gogs/gogs",
-        "labels": ["traefik.backend=Portainer", "traefik.frontend.rule=Host:$hostname", "traefik.docker.network=proxy", "traefik.port=3000"],
+        "labels": ["traefik.frontend.rule=Host:$hostname", "traefik.docker.network=proxy", "traefik.port=3000"],
         "restart": "always",
         "volumes": ["$path:/data"],
         "ports": ["$ssh_port:22"]

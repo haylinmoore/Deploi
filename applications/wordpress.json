@@ -4,7 +4,7 @@
     "vars": ["hostname", "mysql_ip", "mysql_port", "mysql_user", "mysql_password"],
     "docker-compose": {
         "image": "wordpress",
-        "labels": ["traefik.backend=Portainer", "traefik.frontend.rule=Host:$hostname", "traefik.docker.network=proxy", "traefik.port=80", "WORDPRESS_DB_HOST=$mysql_ip:$mysql_port", "WORDPRESS_DB_USER=$mysql_user", "WORDPRESS_DB_PASSWORD=$mysql_password"],
+        "labels": ["traefik.frontend.rule=Host:$hostname", "traefik.docker.network=proxy", "traefik.port=80", "WORDPRESS_DB_HOST=$mysql_ip:$mysql_port", "WORDPRESS_DB_USER=$mysql_user", "WORDPRESS_DB_PASSWORD=$mysql_password"],
         "restart": "always"
 
     }
