@@ -11,6 +11,7 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "express-basic-auth": "^1.1.5",
     "js-yaml": "^3.12.0",
     "read-yaml": "^1.1.0",
     "write-yaml": "^1.0.0"
